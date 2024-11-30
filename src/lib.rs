@@ -31,7 +31,7 @@ async fn health_check()-> impl Responder {
 // }
 
 
-pub fn run() -> Result<Server, std::io::Error> {
+pub fn run(address: &str) -> Result<Server, std::io::Error> {
     let server = HttpServer::new(||
         { 
         App::new()
@@ -39,7 +39,7 @@ pub fn run() -> Result<Server, std::io::Error> {
         // .service(hello)
         .service(health_check)
     })
-        .bind(("127.0.0.1", 8080))?
+        .bind(address)?
         .run();
     Ok(server)
 }

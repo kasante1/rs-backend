@@ -16,6 +16,6 @@ async fn health_check_works(){
 
 
 fn spawn_app(){
-    let server = rs_backend::run().expect("Failed to bind address");
+    let server = rs_backend::run("127.0.0.1:8081").expect("Failed to bind address");
     let _ = tokio::spawn(server);
 }
